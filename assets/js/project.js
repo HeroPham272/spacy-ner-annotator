@@ -158,7 +158,16 @@ $( ".classes" ).on("click",".class",function(){
 		alert("Please select atleast one entity");
 		return;
 	}
-	iniidx = full_text.indexOf(selected_text);
+
+	selection.modify('extend', 'backward', 'paragraphboundary');
+	hung = window.getSelection();
+	hungt = hung.toString();
+	hungle = hungt.length;
+	textre = 'h';
+	textreplace = textre.repeat(hungle);
+	full_texttt = full_text.replace(hungt,textreplace);
+
+	iniidx = full_texttt.indexOf(selected_text);
 	lgth = selected_text.length;
 	if(iniidx == -1){
 		alert("Please select entity inside the content");
@@ -198,7 +207,7 @@ $( "#entity" ).on("dblclick",".entityval",function(){
 	$("#editor").html($("#editor").html().replace(tag_string,delete_text));
 	entities_values.splice(e_v_idx,1);
 	entities_values.splice(e_v_idx,1);
-	en_del_idx = full_text.indexOf(delete_text);
+	en_del_idx = full_texttt.indexOf(delete_text);
 	en_len_cnt = en_del_idx+delete_text.length;
 	del_idx = -1;
 	$.each(entities,function(idx,val){
